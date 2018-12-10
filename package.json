@@ -21,6 +21,8 @@
     },
     "dependencies": {
         "browser-sync": "^2.18.13",
-        "browser-sync-webpack-plugin": "^1.2.0"
+        "browser-sync-webpack-plugin": "^1.2.0",
+        "node-gyp": "^3.8.0",
+        "node-sass": "^4.10.0"
     }
 }
