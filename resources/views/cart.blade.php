@@ -10,9 +10,18 @@
 
     <div class="breadcrumbs">
         <div class="container">
+
+        
+
+
+
+            @component('components.breadcrumbs')
+            <div style="position:absolute">
             <a href="#">Home</a>
             <i class="fa fa-chevron-right breadcrumb-separator"></i>
             <span>Shopping Cart</span>
+        </div>
+             @endcomponent
         </div>
     </div> <!-- end breadcrumbs -->
 
@@ -20,26 +29,23 @@
 
         <div>
 
-            @if (session()->has('success_message'))
+            <div class="container">
+        @if (session()->has('success_message'))
             <div class="alert alert-success">
-                {{session()->get('success_message') }}
-
+                {{ session()->get('success_message') }}
             </div>
+        @endif
 
-            @endif
-            @if(count($errors)>0)
+        @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
-                    @foreach ($erroes->all() as $error)
-                    <li>{{ $error }}</li>
-                        
-                    
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
-                
             </div>
-
-            @endif
+        @endif
+    </div>
             @if (Cart::count() > 0)
 
 
@@ -52,7 +58,7 @@
                
                 <div class="cart-table-row">
                     <div class="cart-table-row-left">
-                        <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/products/'.$item->model->slug.'.jpg')}}" alt="item" class="cart-table-img"></a>
+                        <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('storage/'.$item->model->image) }}" alt="item" class="cart-table-img"></a>
                         <div class="cart-item-details">
                             <div class="cart-table-item"><a href="{{ route('shop.show',$item->model->slug) }}">{{ $item->model->name }}</a></div>
                             <div class="cart-table-description">{{ $item->model->details }}</div>

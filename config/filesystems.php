@@ -43,6 +43,14 @@ return [
 
     'disks' => [
 
+        'custom' => [
+            'driver' => 'local',
+            'root' => storage_path('../public/storage'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

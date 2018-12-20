@@ -9,13 +9,42 @@
 
 @section('content')
 
-    <div class="breadcrumbs">
-        <div class="container">
+
+
+    
+
+ 
+            @component('components.breadcrumbs')
+            <div style="position:absolute">
             <a href="/">Home</a>
-            <i class="fa fa-chevron-right breadcrumb-separator"></i>
+            
+            <i class="fa fa-chevron-right breadcrumb-separator"  ></i>
+        
             <span>Shop</span>
         </div>
-    </div> <!-- end breadcrumbs -->
+            @endcomponent
+
+            <div class="container">
+        @if (session()->has('success_message'))
+            <div class="alert alert-success">
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
+
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+
+
+
+       
 
     <div class="products-section container">
         <div class="sidebar">
@@ -51,7 +80,7 @@
 
                 @forelse ($products as $product)
                     <div class="product">
-                        <a href="{{ route('shop.show', $product->slug) }}"><img src="{{ asset('img/products/'.$product->slug.'.jpg') }}" alt="product"></a>
+                        <a href="{{ route('shop.show', $product->slug) }}"><img src="{{ asset('storage/'.$product->image) }}" alt="product">
                         <a href="{{ route('shop.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>
                         <div class="product-price">{{ $product->presentPrice() }}</div>
                     </div>
